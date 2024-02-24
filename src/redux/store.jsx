@@ -1,4 +1,4 @@
-import { configureStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
@@ -40,7 +40,7 @@ function* watcherSaga() {
 
 //This creating the store
 //the store is the big JS object to that holds all of the data for our app
-const store = configureStore(
+const store = createStore(
     //this function is our first reducer
     //reducer is a function that runs every time an action is dispatched
     combineReducers({
