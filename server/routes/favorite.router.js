@@ -40,7 +40,13 @@ router.put('/:id', (req, res) => {
   const updateFavorite = req.data
   pool
   .query(queryText, [updateFavorite[0], updateFavorite[1]])
-  res.sendStatus(200);
+  .then((result) => {
+    res.sendStatus(200);
+  })
+  .catch((error) => {
+    console.log('Error updating favorite.', error);
+    res.sendStatus(500);
+  });
 });
 
 // delete a favorite
@@ -59,3 +65,4 @@ router.delete('/:id', (req, res) => {
 });
 
 module.exports = router;
+
