@@ -17,6 +17,11 @@ INSERT INTO "categories"
   ('whimsical');
 
 -- Favorites table:
+CREATE TABLE "favorites" (
+  "id" SERIAL PRIMARY KEY,
+  "image" VARCHAR (255) NOT NULL,
+  "category_id" INT REFERENCES "categories"
+);
 
 -- You'll need a "favorites" table for storing each instance of
 -- a Giphy image that has been "favorited."
