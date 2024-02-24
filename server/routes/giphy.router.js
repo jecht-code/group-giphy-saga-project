@@ -16,7 +16,15 @@ router.get('/search', (req, res) => {
     .get(`https://${BASE_URL_GIPHY}/?api_key=${API_KEY}&q=${searchTerm}&limit=10`)
     .then((giphyResponse) => {
         console.log('SUCCESS,',giphyResponse.data);
-        res.send(giphyResponse.data);
+        const imageResults = giphyResponse.data.data.map((imageData) => {
+            return {
+                id: imageData.id,
+                alt: imageData.title,
+                image: imageData.images.original.url,
+
+            };
+        });
+        res.send(imageResults);
     })
     .catch((error) => {
         console.log('ERROR:', error)
