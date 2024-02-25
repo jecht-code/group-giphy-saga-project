@@ -72,7 +72,7 @@ function* watcherSaga() {
     // yield
     yield takeEvery('GET_FAVORITES', getFavoritesSaga);
     yield takeEvery('SEARCH_GIPHY', searchGiphySaga);
-    yield takeEvery('GET_FAVORITES', postFavoriteSaga);
+    yield takeEvery('POST_FAVORITES', postFavoriteSaga);
 }
 
 //This creating the store
