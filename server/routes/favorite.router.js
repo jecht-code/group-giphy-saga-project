@@ -24,10 +24,8 @@ router.post('/', (req, res) => {
                      VALUES ($1, $2);`;
                      
   const queryValues = [
-    newAnimal.image,
-    newAnimal.category_id
+    newAnimal.image
   ];
-
   pool
   .query(queryText, queryValues)
   .then((result) => {
