@@ -12,7 +12,16 @@ const giphy = (state = [], action) => {
         default:
             return state;
     }
-}
+};
+
+const favorites = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_FAVORITES':
+            action.payload;
+        default:
+            return state;
+    }
+};
 
 //Saga
 const sagaMiddleware = createSagaMiddleware();
@@ -31,11 +40,21 @@ function* searchGiphySaga(action) {
         // error happens try get sent here
         console.log('ERROR:', error);
     }
-}
+};
+
+function* getFavoritesSaga(action) {
+    try {
+        const foundFavs = yield axios.get('/api/favorites');
+        yield put ({ type: 'SET_FAVORITES', payload: foundFavs.data})
+    } catch (error) {
+        console.log('Error: ', error)
+    }
+};
 
 //Saga function [generator function]
 function* watcherSaga() {
     // yield
+    yield takeEvery('GET_FAVORITES', getFavoritesSaga);
     yield takeEvery('SEARCH_GIPHY', searchGiphySaga);
 }
 
@@ -46,6 +65,7 @@ const store = createStore(
     //reducer is a function that runs every time an action is dispatched
     combineReducers({
         giphy,
+        favorites,
     }),
     applyMiddleware(sagaMiddleware, logger)
 );
