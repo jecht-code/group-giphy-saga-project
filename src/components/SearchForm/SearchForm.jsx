@@ -12,7 +12,7 @@ function SearchForm() {
     };
 
     return (
-        <form action="">
+        <form>
             <input
                 id="search"
                 placeholder="Search for Giphy"

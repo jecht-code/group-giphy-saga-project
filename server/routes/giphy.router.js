@@ -15,7 +15,7 @@ router.post('/search', (req, res) => {
     axios
     .get(`https://${BASE_URL_GIPHY}/?api_key=${API_KEY}&q=${searchTerm}&limit=10`)
     .then((giphyResponse) => {
-        console.log('SUCCESS,',giphyResponse.data);
+        console.log('SUCCESS,', giphyResponse.data);
         const imageResults = giphyResponse.data.data.map((imageData) => {
             return {
                 id: imageData.id,
