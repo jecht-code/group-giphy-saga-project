@@ -33,10 +33,27 @@ function* searchGiphySaga(action) {
     }
 }
 
+//ADD a POST TO ADD ELEMENTS
+function* postFavoriteSaga(action) {
+    //try catch block
+    try {
+        //post a new element to the server
+        yield axios({
+            method: 'POST',
+            url: '/api/favorites',
+            data: action.payload
+        });
+        yield put({ type: 'GET_FAVORITES' });
+    } catch(error) {
+        console.log('error:', error);
+    }
+}
+
 //Saga function [generator function]
 function* watcherSaga() {
     // yield
     yield takeEvery('SEARCH_GIPHY', searchGiphySaga);
+    yield takeEvery('GET_FAVORITES', postFavoriteSaga);
 }
 
 //This creating the store
