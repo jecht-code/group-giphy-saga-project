@@ -20,8 +20,7 @@ router.get('/', (req, res) => {
 // add a new favorite
 router.post('/', (req, res) => {
   const newAnimal = req.data;
-  const queryText = `INSERT INTO "favorites" ("image", "category_id")
-                     VALUES ($1, $2);`;
+  const queryText = `INSERT INTO "favorites" ("image") VALUES ($1);`;
                      
   const queryValues = [
     newAnimal.image
