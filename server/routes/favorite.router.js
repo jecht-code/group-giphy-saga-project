@@ -19,14 +19,11 @@ router.get('/', (req, res) => {
 
 // add a new favorite
 router.post('/', (req, res) => {
-  const newAnimal = req.data;
-  const queryText = `INSERT INTO "favorites" ("image") VALUES ($1);`;
-                     
-  const queryValues = [
-    newAnimal.image
-  ];
+  console.log('scott', req.body)
+  const queryText = `INSERT INTO "favorites" ("image", "category_id") VALUES ($1, $2);`;
+  const { image, category_id } = req.body;           
   pool
-  .query(queryText, queryValues)
+  .query(queryText, [image, category_id])
   .then((result) => {
     res.sendStatus(201);
   })

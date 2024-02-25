@@ -54,12 +54,13 @@ function* getFavoritesSaga(action) {
 //ADD a POST TO ADD ELEMENTS
 function* postFavoriteSaga(action) {
     //try catch block
+    console.log('scott', action.payload)
     try {
         //post a new element to the server
         yield axios({
             method: 'POST',
             url: '/api/favorites',
-            data: action.payload
+            data: {image: action.payload, category_id: 1}
         });
         yield put({ type: 'GET_FAVORITES' });
     } catch(error) {

@@ -7,6 +7,7 @@ let pool;
 // eg: 
 //  DATABASE_URL=postgresql://jDoe354:secretPw123@some.db.com/prime_app
 if (process.env.DATABASE_URL) {
+    console.log('Using Remote Database')
     pool = new pg.Pool({
         connectionString: process.env.DATABASE_URL,
         ssl: {
@@ -18,10 +19,11 @@ if (process.env.DATABASE_URL) {
 // we'll connect to the postgres database that is 
 // also running on our computer (localhost)
 else {
+    console.log('Using Local Database')
     pool = new pg.Pool({
         host: 'localhost',
         port: 5432,
-        database: 'favorites', 
+        database: 'giphy_search_favorites', 
     });
 }
 
