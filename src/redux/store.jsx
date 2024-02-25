@@ -23,7 +23,7 @@ function* searchGiphySaga(action) {
     try {
         // code to try running here
         //changed .post to .get becuase of our router call.
-        const searchResult = yield axios.get('/api/giphy/search', {
+        const searchResult = yield axios.post('/api/giphy/search', {
            searchTerm: action.payload.name, 
         });
         yield put({ type: 'SET_IMAGES', payload: searchResult.data });

@@ -9,7 +9,7 @@ console.log('API_KEY:', API_KEY);
 
 const BASE_URL_GIPHY = 'api.giphy.com/v1/gifs/search'
 
-router.get('/search', (req, res) => {
+router.post('/search', (req, res) => {
     const { searchTerm } = req.body;
     //what to do??
     axios
